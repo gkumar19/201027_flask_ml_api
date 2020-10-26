@@ -34,6 +34,7 @@ if __name__ == '__main__':
 #For Heroku Deployment
 #Generate requirement.txt using conda list --export > requirements.txt
 #In requirement.txt Add gunicorn==20.0.4
+#Procfile: web: gunicorn --bind 0.0.0.0:$PORT app:app
 
 #If deployed on heroku following python code can be used to talk to the server
 #import requests
