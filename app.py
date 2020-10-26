@@ -34,3 +34,12 @@ if __name__ == '__main__':
 #For Heroku Deployment
 #Generate requirement.txt using conda list --export > requirements.txt
 #In requirement.txt Add gunicorn==20.0.4
+
+#If deployed on heroku following python code can be used to talk to the server
+#import requests
+# url = "https://my-first-app-211021.herokuapp.com/prediction"
+# payload = [{"PassengerId":1, "Pclass":3, "Sex":"male", "Age":22, "SibSp":1, "Parch":0, "Fare":7.25, "Embarked":"S"},
+#                 {"PassengerId":2, "Pclass":1, "Sex":"female", "Age":38, "SibSp":1, "Parch":0, "Fare":71.2833, "Embarked":"C"}]
+
+# response = requests.request("POST", url, json=payload)
+# print(response.text)
