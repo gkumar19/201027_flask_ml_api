@@ -5,7 +5,7 @@ Created on Mon Oct 26 22:57:47 2020
 @author: Gaurav
 """
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, make_response
 import joblib
 import pandas as pd
 import traceback
@@ -23,6 +23,18 @@ def predict():
     except:
         return jsonify({'trace': traceback.format_exc()})
 
+#Does the same thing with additional response info
+@app.route('/prediction2', methods=['GET', 'POST'])
+def predict2():
+    try:
+        recieved_json = request.json
+        query_df = pd.DataFrame(recieved_json, columns=['PassengerId', 'Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare','Embarked'])
+        prediction = {"prediction": model.predict(query_df).tolist()}
+        headers = {"Content-Type": "json_response"}
+        return make_response(prediction, 404, headers)
+    except:
+        return jsonify({'trace': traceback.format_exc()})
+    
 if __name__ == '__main__':
     app.run(debug=True)
 
